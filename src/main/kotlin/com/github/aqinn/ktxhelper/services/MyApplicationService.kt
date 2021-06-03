@@ -1,6 +1,6 @@
-package org.jetbrains.plugins.template.services
+package com.github.aqinn.ktxhelper.services
 
-import org.jetbrains.plugins.template.MyBundle
+import com.github.aqinn.ktxhelper.MyBundle
 
 class MyApplicationService {
 
