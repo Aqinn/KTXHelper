@@ -13,7 +13,7 @@ import com.intellij.psi.PsiFile
 import com.intellij.psi.search.EverythingGlobalScope
 import com.intellij.psi.search.FilenameIndex
 import com.intellij.ui.awt.RelativePoint
-
+import java.util.Locale
 
 /**
  * @Author Aqinn
@@ -21,7 +21,7 @@ import com.intellij.ui.awt.RelativePoint
  */
 object Utils {
 
-    private val isDebug = false
+    private const val fadeOutTime = 7500L
 
     /**
      * Try to find layout XML file in current source on cursor's position
@@ -46,43 +46,23 @@ object Utils {
      * @return
      */
     fun findLayoutResource(element: PsiElement?): PsiFile? {
-        element?.let {
-            if (isDebug)
-                showMessage(it.project, "Click Element", it.text)
-            println("Finding layout resource for element: " + it.text)
+        println("Finding layout resource for element: " + element?.text)
+        return when {
+            element == null -> {
+                null // nothing to be used
+            }
+            element.parent.parent.firstChild.text == null -> {
+                null // no file to process
+            }
+            "R.layout" != element.parent.parent.firstChild.text -> {
+                null // not layout file
+            }
+            else -> {
+                val project = element.project
+                val name = String.format(Locale.getDefault(), "%s.xml", element.text)
+                return resolveLayoutResourceFile(element, project, name)
+            }
         }
-        if (element == null) {
-            return null // nothing to be used
-        }
-//        if (element !is PsiIdentifier) {
-//            return null // nothing to be used
-//        }
-        val prefix = element.parent.parent.firstChild.text
-        if (isDebug) {
-            showMessage(element.project, "Check", "element.text => ${element.text}")
-            showMessage(element.project, "Check", "element.parent.text => ${element.parent.text}")
-            showMessage(element.project, "Check", "element.parent.firstChild.text => ${element.parent.firstChild.text}")
-            showMessage(element.project, "Check", "element.parent.parent.text => ${element.parent.parent.text}")
-            showMessage(
-                element.project,
-                "Check",
-                "element.parent.parent.firstChild.text => ${element.parent.parent.firstChild.text}"
-            )
-        }
-
-        if (prefix == null) {
-            if (isDebug)
-                showMessage(element.project, "Check", "layout null")
-            return null // no file to process
-        }
-        if ("R.layout" != prefix) {
-            if (isDebug)
-                showMessage(element.project, "Check", "R.layout != ${prefix}")
-            return null // not layout file
-        }
-        val project = element.project
-        val name = String.format("%s.xml", element.text)
-        return resolveLayoutResourceFile(element, project, name)
     }
 
     private fun resolveLayoutResourceFile(element: PsiElement, project: Project, name: String): PsiFile? {
@@ -104,9 +84,7 @@ object Utils {
             // useful when the project is not properly configured - when the resource directory is not configured
             files = FilenameIndex.getFilesByName(project, name, EverythingGlobalScope(project))
             if (files.size <= 0) {
-                if (isDebug)
-                    showMessage(element.project, "Check", "files.size <= 0")
-                return null //no matching files
+                return null // no matching files
             }
         }
 
@@ -115,8 +93,6 @@ object Utils {
         for (file in files!!) {
             println("Resolved layout resource file for name [" + name + "]: " + file.virtualFile)
         }
-        if (isDebug)
-            showMessage(element.project, "Check", "last one")
         return files[0]
     }
 
@@ -134,7 +110,7 @@ object Utils {
         val statusBar = WindowManager.getInstance().getStatusBar(project)
         JBPopupFactory.getInstance()
             .createHtmlTextBalloonBuilder(text, type, null)
-            .setFadeoutTime(7500)
+            .setFadeoutTime(fadeOutTime)
             .createBalloon()
             .show(RelativePoint.getCenterOf(statusBar.component), Balloon.Position.atRight)
     }
@@ -142,5 +118,4 @@ object Utils {
     fun showMessage(project: Project, title: String, msg: String) {
         Messages.showMessageDialog(project, msg, title, Messages.getInformationIcon())
     }
-
 }

@@ -1,0 +1,40 @@
+<svg width="80" height="80" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <radialGradient gradientTransform="translate(61.8732 2.63097) scale(73.3111)" gradientUnits="userSpaceOnUse"
+                        r="1" cy="0" cx="0" id="paint0_radial">
+            <stop stop-color="#EF4857" offset="0.003435"/>
+            <stop stop-color="#D211EC" offset="0.4689"/>
+            <stop stop-color="#7F52FF" offset="1"/>
+        </radialGradient>
+    </defs>
+    <g>
+        <title>background</title>
+        <rect fill="none" id="canvas_background" height="82" width="82" y="-1" x="-1"/>
+    </g>
+    <g>
+        <title>Layer 1</title>
+        <path id="svg_1" fill="url(#paint0_radial)" d="m72,72l-64,0l0,-64l64,0l-32.6627,31.5369l32.6627,32.4631z"/>
+    </g>
+</svg>
+
+<!--<svg t="1622795845416"-->
+<!--     class="icon"-->
+<!--     viewBox="0 0 1024 1024"-->
+<!--     version="1.1"-->
+<!--     xmlns="http://www.w3.org/2000/svg"-->
+<!--     p-id="3954"-->
+<!--     width="80" height="80">-->
+<!--    <defs>-->
+<!--        <radialGradient gradientTransform="translate(61.8732 2.63097) scale(73.3111)"-->
+<!--                        gradientUnits="userSpaceOnUse"-->
+<!--                        r="1" cy="0" cx="0" id="paint0_radial">-->
+<!--            &lt;!&ndash;            <stop stop-color="#EF4857" offset="0.003435"/>&ndash;&gt;-->
+<!--            &lt;!&ndash;            <stop stop-color="#D211EC" offset="0.4689"/>&ndash;&gt;-->
+<!--            &lt;!&ndash;            <stop stop-color="#7F52FF" offset="1"/>&ndash;&gt;-->
+<!--            <stop stop-color="#1296db" offset="1"/>-->
+<!--        </radialGradient>-->
+<!--    </defs>-->
+<!--    <path d="M55.466667 1024l482.133333-490.666667L1024 1024zM0 0h512L0 533.333333z m571.733333 0L0 597.333333v426.666667l512-512L1024 0z"-->
+<!--          p-id="3955" fill="url(#paint0_radial)"></path>-->
+<!--    &lt;!&ndash;    <path id="svg_1" fill="url(#paint0_radial)" d="m72,72l-64,0l0,-64l64,0l-32.6627,31.5369l32.6627,32.4631z"/>&ndash;&gt;-->
+<!--</svg>-->

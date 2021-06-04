@@ -36,7 +36,8 @@
     </applicationListeners>
 
     <actions>
-        <action id="KTXHelperID" class="com.github.aqinn.ktxhelper.actions.ImportAction" text="KTXHelper">
+        <action id="KTXHelperID" class="com.github.aqinn.ktxhelper.actions.ImportAction" text="KTXHelper"
+                icon="/icons/kotlin.png">
             <add-to-group group-id="GenerateGroup" anchor="last"/>
         </action>
     </actions>
